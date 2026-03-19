@@ -143,7 +143,14 @@ def event_css(request, organizer=None, event=None, **kwargs):
             # it as primary colour automatically.
             result = ':root {' + f'--color-primary-event: {request.event.visible_primary_color};' + '}'
         else:
-            result = ':root {' + f'--color-primary: {request.event.visible_primary_color};' + '}'
+            css_vars = [f'--color-primary: {request.event.visible_primary_color}']
+            if request.event.settings.get('header_bg_color'):
+                css_vars.append(f'--header-bg-color: {request.event.settings.get("header_bg_color")}')
+            if request.event.settings.get('header_text_color'):
+                css_vars.append(f'--header-text-color: {request.event.settings.get("header_text_color")}')
+            if request.event.settings.get('nav_text_color'):
+                css_vars.append(f'--nav-text-color: {request.event.settings.get("nav_text_color")}')
+            result = ':root {' + ';'.join(css_vars) + ';}'
     response = HttpResponse(result, content_type='text/css')
     response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
     response['Pragma'] = 'no-cache'

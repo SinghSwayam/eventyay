@@ -2015,6 +2015,81 @@ Your {event} team"""
             widget=forms.TextInput(attrs={'class': 'colorpickerfield'}),
         ),
     },
+    'header_bg_color': {
+        'default': settings.EVENTYAY_PRIMARY_COLOR,
+        'type': str,
+        'form_class': forms.CharField,
+        'serializer_class': serializers.CharField,
+        'serializer_kwargs': dict(
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+        ),
+        'form_kwargs': dict(
+            label=_('Header background color'),
+            help_text=_('Color for the top header and event date/time background.'),
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+            widget=forms.TextInput(attrs={'class': 'colorpickerfield'}),
+        ),
+    },
+    'header_text_color': {
+        'default': '#ffffff',
+        'type': str,
+        'form_class': forms.CharField,
+        'serializer_class': serializers.CharField,
+        'serializer_kwargs': dict(
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+        ),
+        'form_kwargs': dict(
+            label=_('Header text color'),
+            help_text=_('Color for the event title and date/time text in the header.'),
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+            widget=forms.TextInput(attrs={'class': 'colorpickerfield'}),
+        ),
+    },
+    'nav_text_color': {
+        'default': '#ffffff',
+        'type': str,
+        'form_class': forms.CharField,
+        'serializer_class': serializers.CharField,
+        'serializer_kwargs': dict(
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+        ),
+        'form_kwargs': dict(
+            label=_('Navigation text color'),
+            help_text=_('Color for navigation menu items.'),
+            validators=[
+                RegexValidator(
+                    regex='^#[0-9a-fA-F]{6}$',
+                    message=_('Please enter the hexadecimal code of a color, e.g. #990000.'),
+                ),
+            ],
+            widget=forms.TextInput(attrs={'class': 'colorpickerfield'}),
+        ),
+    },
     'theme_color_success': {
         'default': '#50a167',
         'type': str,

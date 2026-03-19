@@ -31,6 +31,9 @@ logger = logging.getLogger('eventyay.presale.style')
 affected_keys = [
     'primary_font',
     'primary_color',
+    'header_bg_color',
+    'header_text_color',
+    'nav_text_color',
     'theme_color_success',
     'theme_color_danger',
 ]
@@ -58,6 +61,12 @@ def compile_scss(object, file='main.scss', fonts=True):
     sassrules = []
     if object.settings.get('primary_color'):
         sassrules.append('$brand-primary: {};'.format(object.settings.get('primary_color')))
+    if object.settings.get('header_bg_color'):
+        sassrules.append('$header-bg-color: {};'.format(object.settings.get('header_bg_color')))
+    if object.settings.get('header_text_color'):
+        sassrules.append('$header-text-color: {};'.format(object.settings.get('header_text_color')))
+    if object.settings.get('nav_text_color'):
+        sassrules.append('$nav-text-color: {};'.format(object.settings.get('nav_text_color')))
     if object.settings.get('theme_color_success'):
         sassrules.append('$brand-success: {};'.format(object.settings.get('theme_color_success')))
     if object.settings.get('theme_color_danger'):
